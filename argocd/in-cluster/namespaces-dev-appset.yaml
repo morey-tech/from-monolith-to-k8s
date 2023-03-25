@@ -18,7 +18,7 @@ spec:
       source:
         repoURL: https://github.com/morey-tech/from-monolith-to-k8s
         targetRevision: HEAD
-        path: '{{path}}'
+        path: 'helm/namespace'
       destination:
         name: dev
         namespace: '{{path.basename}}'
