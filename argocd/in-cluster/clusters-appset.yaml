@@ -12,6 +12,8 @@ spec:
       - path: argocd/*
       - path: argocd/staging*
         exclude: true
+      - path: argocd/in-cluster*
+        exclude: true
   template:
     metadata:
       name: 'cluster-{{path.basename}}'
