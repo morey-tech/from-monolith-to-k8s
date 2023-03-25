@@ -19,6 +19,8 @@ spec:
         repoURL: https://github.com/morey-tech/from-monolith-to-k8s
         targetRevision: HEAD
         path: 'helm/namespace'
+        helm:
+          releaseName: {{ .Release.Name | trimPrefix "cluster-" }}
       destination:
         name: '{{ .Release.Name | trimPrefix "cluster-" }}'
         namespace: '{{`{{path.basename}}`}}'
