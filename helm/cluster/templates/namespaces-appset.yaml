@@ -9,10 +9,10 @@ spec:
       repoURL: https://github.com/morey-tech/from-monolith-to-k8s
       revision: HEAD
       directories:
-      - path: argocd/{{ .Release.Name }}/*
+      - path: argocd/{{ .Release.Name | trimPrefix "cluster-" }}/*
   template:
     metadata:
-      name: '{{ .Release.Name }}-namespaces--{{`{{path.basename}}`}}'
+      name: '{{ .Release.Name }}-namespaces-{{`{{path.basename}}`}}'
     spec:
       project: "default"
       source:
