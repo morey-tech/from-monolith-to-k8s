@@ -9,7 +9,7 @@ spec:
     targetRevision: HEAD
     path: argocd/dev/conference
   destination:
-    # namespace: argocd
+    namespace: argocd
     name: in-cluster
   syncPolicy:
     syncOptions:
