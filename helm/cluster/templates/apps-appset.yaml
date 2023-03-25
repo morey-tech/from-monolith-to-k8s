@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: '{{ .Release.Name }}'
+  name: '{{ .Release.Name }}-apps'
   namespace: argocd
 spec:
   generators:
@@ -12,7 +12,7 @@ spec:
       - path: argocd/{{ .Release.Name | trimPrefix "cluster-" }}/*
   template:
     metadata:
-      name: '{{ .Release.Name }}-{{`{{path.basename}}`}}'
+      name: '{{ .Release.Name }}-apps-{{`{{path.basename}}`}}'
     spec:
       project: "default"
       source:
@@ -20,7 +20,7 @@ spec:
         targetRevision: HEAD
         path: '{{`{{path}}`}}'
       destination:
-        name: '{{ .Release.Name | trimPrefix "cluster-" }}'
+        name: 'in-cluster'
         namespace: '{{`{{path.basename}}`}}'
       # syncPolicy:
       #   syncOptions:
