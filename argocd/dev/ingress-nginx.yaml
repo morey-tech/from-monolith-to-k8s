@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'ingress-nginx'
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/kubernetes/ingress-nginx/'
+    path: deploy/static/provider/kind
+    targetRevision: HEAD
+  destination:
+    name: dev
+  syncPolicy:
+    automated: {}
