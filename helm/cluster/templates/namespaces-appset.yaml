@@ -20,7 +20,7 @@ spec:
         targetRevision: HEAD
         path: 'helm/namespace'
       destination:
-        name: '{{ .Release.Name }}'
+        name: '{{ .Release.Name | trimPrefix "cluster-" }}'
         namespace: '{{`{{path.basename}}`}}'
       # syncPolicy:
       #   syncOptions:
