@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'email-service-new'
+spec:
+  project: default
+  source:
+    repoURL: 'https://salaboy.github.io/helm/'
+    targetRevision: v0.1.0
+    chart: fmtok8s-email-service
+  destination:
+    namespace: conference-new
+    name: dev
+  syncPolicy:
+    automated: {}
+  #   syncOptions:
+  #     - CreateNamespace=true
