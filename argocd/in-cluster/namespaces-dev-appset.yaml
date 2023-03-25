@@ -12,7 +12,7 @@ spec:
       - path: argocd/dev/*
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: 'namespaces-dev-{{path.basename}}'
     spec:
       project: "default"
       source:
