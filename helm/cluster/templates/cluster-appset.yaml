@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/morey-tech/from-monolith-to-k8s
       revision: HEAD
       directories:
-      - path: argocd/{{ .Release.Name }}/*
+      - path: argocd/{{ .Release.Name | trimPrefix "cluster-" }}/*
   template:
     metadata:
       name: '{{ .Release.Name }}-{{`{{path.basename}}`}}'
@@ -20,7 +20,7 @@ spec:
         targetRevision: HEAD
         path: '{{`{{path}}`}}'
       destination:
-        name: '{{ .Release.Name }}'
+        name: '{{ .Release.Name | trimPrefix "cluster-" }}'
         namespace: '{{`{{path.basename}}`}}'
       # syncPolicy:
       #   syncOptions:
