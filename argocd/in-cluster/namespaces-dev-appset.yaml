@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: namespaces-dev
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/morey-tech/from-monolith-to-k8s
+      revision: HEAD
+      directories:
+      - path: argocd/dev/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: "default"
+      source:
+        repoURL: https://github.com/morey-tech/from-monolith-to-k8s
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        name: dev
+        namespace: '{{path.basename}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
