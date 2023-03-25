@@ -5,15 +5,10 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - git:
-      repoURL: https://github.com/morey-tech/from-monolith-to-k8s
-      revision: HEAD
-      directories:
-      - path: argocd/*
-      - path: argocd/staging*
-        exclude: true
-      - path: argocd/in-cluster*
-        exclude: true
+  - clusters:
+      selector:
+        matchExpressions:
+        - {key: 'akuity.io/argo-cd-cluster-name', operator: NotIn, values: [in-cluster]}
   template:
     metadata:
       name: 'cluster-{{path.basename}}'
