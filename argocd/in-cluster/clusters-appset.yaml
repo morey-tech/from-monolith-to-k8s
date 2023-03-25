@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: namespaces-dev
+  name: clusters
   namespace: argocd
 spec:
   generators:
@@ -9,19 +9,21 @@ spec:
       repoURL: https://github.com/morey-tech/from-monolith-to-k8s
       revision: HEAD
       directories:
-      - path: argocd/dev/*
+      - path: argocd/*
+      - path: argocd/staging*
+        exclude: true
   template:
     metadata:
-      name: 'namespaces-dev-{{path.basename}}'
+      name: 'cluster-{{path.basename}}'
     spec:
       project: "default"
       source:
         repoURL: https://github.com/morey-tech/from-monolith-to-k8s
         targetRevision: HEAD
-        path: 'helm/namespace'
+        path: 'helm/cluster'
       destination:
-        name: dev
-        namespace: '{{path.basename}}'
-      syncPolicy:
-        syncOptions:
-        - CreateNamespace=true
+        name: in-cluster
+        namespace: 'argocd'
+      # syncPolicy:
+      #   syncOptions:
+      #   - CreateNamespace=true
