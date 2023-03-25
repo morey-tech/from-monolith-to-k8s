@@ -5,12 +5,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://salaboy.github.io/helm/'
-    targetRevision: v0.1.1
-    chart: fmtok8s-conference-chart
+    repoURL: 'https://github.com/morey-tech/from-monolith-to-k8s'
+    targetRevision: HEAD
+    path: argocd/dev/conference
   destination:
-    namespace: conference
-    name: dev
+    # namespace: argocd
+    name: in-cluster
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
