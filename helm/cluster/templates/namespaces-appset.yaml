@@ -23,7 +23,7 @@ spec:
           releaseName: '{{`{{path.basename}}`}}'
       destination:
         name: '{{ .Release.Name | trimPrefix "cluster-" }}'
-        namespace: '{{`{{path.basename}}`}}'
+        # namespace:  # creates namespaces, so this isn't needed.
       syncPolicy:
         automated: {}
       #   syncOptions:
