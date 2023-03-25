@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'conference'
+spec:
+  project: default
+  source:
+    repoURL: 'https://salaboy.github.io/helm/'
+    targetRevision: v0.1.1
+    chart: fmtok8s-conference-chart
+  destination:
+    namespace: conference
+    name: dev
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
