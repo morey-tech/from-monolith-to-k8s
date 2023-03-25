@@ -11,6 +11,7 @@ spec:
   destination:
     namespace: conference
     name: dev
-  # syncPolicy:
+  syncPolicy:
+    automated: {}
   #   syncOptions:
   #     - CreateNamespace=true
